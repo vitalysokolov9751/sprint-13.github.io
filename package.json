@@ -1,0 +1,38 @@
+{
+  "name": "sprint-12.github.io",
+  "version": "1.0.0",
+  "description": "Project work 12: the Basics of the backend. Server-side development with Node.js. Introduction to express.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalysokolov9751/sprint-12.github.io.git"
+  },
+  "keywords": [],
+  "author": "Vitaly Sokolov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitalysokolov9751/sprint-12.github.io/issues"
+  },
+  "homepage": "https://github.com/vitalysokolov9751/sprint-12.github.io#readme",
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "eslint-config-airbnb": "^18.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.1"
+  }
+}
