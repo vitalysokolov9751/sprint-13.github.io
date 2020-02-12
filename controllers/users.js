@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const User = require('../models/user');
 
 module.exports.getUsers = (req, res) => {
@@ -9,10 +8,11 @@ module.exports.getUsers = (req, res) => {
 };
 
 module.exports.getUser = (req, res) => {
-  User.findById(req.params.userId)
+  const { userId } = req.body;
+  User.findById(userId)
     .orFail(() => ({ message: 'Нет пользователя с таким id', status: 404 }))
     .then((user) => res.send({ user }))
-    .catch((err) => res.status(err.status || 500).send({ message: `${err.message || 500}` }));
+    .catch((err) => res.status(err.status || 400).send({ message: `${err.message || 400}` }));
 };
 
 module.exports.createUser = (req, res) => {
@@ -26,12 +26,12 @@ module.exports.patchProfile = (req, res) => {
   const { name, about } = req.body;
   User.findByIdAndUpdate(req.user._id, { name, about })
     .then((user) => res.send({ user }))
-    .catch((err) => res.status(err.status || 500).send({ message: `${err.message || err}` }));
+    .catch((err) => res.status(err.status || 400).send({ message: `${err.message || err}` }));
 };
 
 module.exports.patchAvatar = (req, res) => {
   const { avatar } = req.body;
-  User.User.findByIdAndUpdate(req.user._id, { avatar })
+  User.findByIdAndUpdate(req.user._id, { avatar })
     .then((user) => res.send({ user }))
-    .catch((err) => res.status(err.status || 500).send({ message: `${err.message || err}` }));
+    .catch((err) => res.status(err.status || 400).send({ message: `${err.message || err}` }));
 };
