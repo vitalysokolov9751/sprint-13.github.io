@@ -4,7 +4,7 @@
   "description": "Проектная работа 13: Начнём делать REST API проекта Mesto и свяжем его с базой данных.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "repository": {

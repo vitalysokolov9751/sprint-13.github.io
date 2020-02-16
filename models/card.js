@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const cardSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    minlength: 2,
-    maxlength: 30,
+    required: [true, 'Имя карточки должно быть задано'],
+    minlength: [2, 'Имя карточки должно состоять не менее чем из 2-х символов'],
+    maxlength: [30, 'Имя карточки должно иметь не более 30-ти символов в длину'],
   },
   link: {
     type: String,
@@ -13,12 +13,12 @@ const cardSchema = new mongoose.Schema({
       validator: (str) => /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/.test(str),
       message: (props) => `${props.value} - url не действителен!`,
     },
-    required: true,
+    required: [true, 'Ссылка карточки должна быть задана'],
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
-    required: true,
+    required: [true, 'Создатель карточки должен быть задан'],
   },
   likes: [{
     type: mongoose.Schema.Types.ObjectId,
