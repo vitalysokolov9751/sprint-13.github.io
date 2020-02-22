@@ -1,4 +1,7 @@
+const mongoose = require('mongoose');
 const User = require('../models/user');
+
+const { ObjectId } = mongoose.Types;
 
 module.exports.getUsers = (req, res) => {
   User.find({})
@@ -9,16 +12,20 @@ module.exports.getUsers = (req, res) => {
 
 module.exports.getUser = (req, res) => {
   const { userId } = req.params;
+  if (!ObjectId.isValid(userId)) {
+    res.status(404).send({ message: `Нет пользователя с id ${userId}` });
+    return;
+  }
   User.findById(userId)
-    .then((user) => res.send({ user }))
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        res.status(400).send({ message: `${err.message}` });
-      } else if (err.name.indexOf('Cast to ObjectId failed')) {
+    .then((user) => {
+      if (!user) {
         res.status(404).send({ message: `Нет пользователя с id ${userId}` });
-      } else {
-        res.status(500).send({ message: `${err.message}` });
+        return;
       }
+      res.send({ data: user });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: `${err.message}` });
     });
 };
 
